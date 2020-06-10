@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    </head>
+
+    <body>
+        <h2>데이터를 있는 그대로 표시하는 예제</h2>
+        <div id="app">
+            <!--data 내부 확인-->
+            {{ $data }}
+            <p>{{ myText }}</p>
+            <p v-text='myText'></p>
+            <p v-html='myHtml'></p>
+            <p v-html='myArray'></p>
+            <p v-html='myArray[1]'></p>
+            <p v-html='myObject.key'></p>
+            <p>{{ preData[0].preData1 }}</p>
+        </div>
+
+        <script>
+            // 미리 데이터 준비하기
+            var preData = [
+                {preData1: 'data1'},
+                {preData2: 'data2'}
+            ]
+
+            new Vue({
+                el: "#app",
+                data: {
+                    myText: 'Hello!',
+                    myHtml: '<h2>Hello!</h2>',
+                    // 배열데이터 만들기 
+                    myArray: ['arr0', 'arr1'],
+                    /* 
+                    * 오브젝트형 
+                    * key, valu
+                    */ 
+                    myObject: {key:'Value'},
+                    myPreData: preData
+                }
+            })
+        </script>
+    </body>
+</html>
