@@ -1,7 +1,25 @@
 var http = require('http'); 
 var https = require('https'); 
+var express = require('express'); 
+var app = express();
 var fs = require('fs'); // 파일 읽기, 쓰기 등 을 할 수 있는 모듈
 var url = require('url');
+
+/*
+* SSL, 개인키 / 디지털 인증서
+*/
+var options = {
+    key: fs.readFileSync('./fake-keys/key.pem'),
+
+    cert: fs.readFileSync('./fake-keys/cert.pem')
+};
+/*
+* 맥은 80, 443 로컬에서 사용중
+*/
+var portForHttp = 8080;
+var portForHttps = 8081;
+
+출처: https://marlboroyw.tistory.com/412 [ywlee861009]
 
 function onRequest(request, response){ 
 
@@ -17,4 +35,5 @@ function onRequest(request, response){
 
 }
 
-http.createServer(onRequest).listen(8080);
+http.createServer(onRequest).listen(portForHttp);
+https.createServer(options, onRequest).listen(portForHttps);

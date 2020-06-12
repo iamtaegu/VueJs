@@ -1,0 +1,32 @@
+{
+  "name": "vuejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "greenlock-express": "^4.0.3",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
+    "nodeman": "^1.1.2",
+    "nodemon": "^2.0.4",
+    "supervisor": "^0.12.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamtaegu/VueJs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamtaegu/VueJs/issues"
+  },
+  "homepage": "https://github.com/iamtaegu/VueJs#readme"
+}
