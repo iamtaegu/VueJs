@@ -19,8 +19,6 @@ var options = {
 var portForHttp = 8080;
 var portForHttps = 8081;
 
-출처: https://marlboroyw.tistory.com/412 [ywlee861009]
-
 function onRequest(request, response){ 
 
     var _url = request.url;
