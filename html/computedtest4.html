@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    </head>
+    <!-- 배열을 사용하여 리스트를 푶시하면 
+        데이터를 변경하는 것만으로 자동으로 리스트 증가 감소 조절 가능-->
+    <body>
+    
+        <div id="app">
+           
+            <input v-model='findWord' />
+            <ul>
+                <!-- findItems의 배열 반환값을 표시함 -->
+                <li v-for="item in findItems"> {{item}} </li>
+            </ul>
+
+        </div>
+
+        <script>
+            
+            new Vue({
+                el: '#app',
+                data: {
+                    findWord: '',
+                    items: ['설악산', '한라산', '북한산', '백두산', '지리산']
+                },
+                methods: {
+
+                },
+                computed: {
+                    findItems: function() {
+                        if (this.findWord) {
+                            return this.items.filter(function(value) {
+                                return (value.indexOf(this.findWord) > -1)
+                            }, this); 
+                        } else {
+                            return this.items
+                        }
+                    }
+                }
+            })
+
+        </script>
+    </body>
+</html>
