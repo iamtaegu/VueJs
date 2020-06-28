@@ -10,9 +10,9 @@ var url = require('url');
 */
 var options = {
     key: fs.readFileSync('./fake-keys/key.pem'),
-
     cert: fs.readFileSync('./fake-keys/cert.pem')
 };
+
 /*
 * 맥은 80, 443 로컬에서 사용중
 */
@@ -20,7 +20,7 @@ var portForHttp = 8080;
 var portForHttps = 8081;
 
 function onRequest(request, response){ 
-
+    
     var _url = request.url;
     var pathData = url.parse(_url, true).path;
 
@@ -32,6 +32,7 @@ function onRequest(request, response){
     }
 
 }
-
+  
 http.createServer(onRequest).listen(portForHttp);
 https.createServer(options, onRequest).listen(portForHttps);
+  

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+
+        <style>
+            .my-comp {
+                width: 150px;
+                background-color: #ffffe0;
+                border: solid;
+                border-color: darkorange;
+                border-radius: 8px;
+                padding: 8px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+    
+        <div id="app">
+           <my-component></my-component>
+           <my-component></my-component>
+           <my-component></my-component>
+        </div>
+
+        <script>
+            
+            var MyComponet = {
+                template: '<p class="my-comp">카운터 <button v-on:click="addOne">추가</button> {{count}}</p>',
+                data: function () {
+                    return {
+                        // 0으로 초기화 
+                        count: 0
+                    }
+                },
+                methods: {
+                    addOne: function(){
+                        this.count++;
+                    }
+                }
+            }
+
+            new Vue({
+                el: '#app',
+                data: {
+                },
+                methods: {
+                },
+                computed: {
+                   
+                }, 
+                components: {
+                    'my-component': MyComponet
+                }
+            })
+
+        </script>
+    </body>
+</html>

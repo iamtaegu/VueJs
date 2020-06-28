@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+
+        <style>
+            .my-comp {
+                width: 150px;
+                background-color: #ffffe0;
+                border: solid;
+                border-color: darkorange;
+                border-radius: 8px;
+                padding: 8px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <script>
+            var obj1 = document.getElementById("loader");
+            obj1.addEventListener("change", loadFile, false); 
+            function loadFile(e) {
+                file = e.target.files[0];
+                if (file) {
+                    var reader = new FileReader(); 
+                    reader.onload = function (e) {
+                        json = JSON.parse(e.target.result);
+                    }
+                    reader.readAsText(file);
+                }
+            }
+        </script>
+
+        <div id="app">
+
+            <input type='file' id='loader' v-on:change="onFileChange">
+            <p>읽어 들인 데이터 = {{ loadData }}</p>
+            
+        </div>
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    loadData: '',
+                },
+                methods: {
+                    onFileChange: function(e) {
+                        file = e.target.files[0];
+                        if (file) {
+                            var reader = new FileReader();
+                            var vm = this;
+                            reader.onload = function(e){
+                                json = JSON.parse(e.target.result);
+                                vm.loadData = json;
+                            }
+                            reader.readAsText(file);
+                        }
+                    }
+                },
+                computed: {
+                   
+                }, 
+                components: {
+                }
+            })
+
+        </script>
+    </body>
+</html>
