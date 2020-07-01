@@ -67,6 +67,7 @@
 							reader.onload = function(e){
 								vm.dataArray = JSON.parse(e.target.result);
 							}
+							// 실제로 읽어들임
 							reader.readAsText(file);
 						}
 					}

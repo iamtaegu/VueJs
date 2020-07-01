@@ -4,11 +4,13 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "greenlock-express": "^4.0.3",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
+    "morgan": "^1.10.0",
     "nodeman": "^1.1.2",
     "nodemon": "^2.0.4",
     "supervisor": "^0.12.0",
