@@ -6,6 +6,7 @@ var routerHTMl = express.Router(); //make router
 var router = express.Router(); //make router 
 var morgan = require('morgan'); //make log
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser'); //extract post request data
 
 var fs = require('fs'); // 파일 읽기, 쓰기 등 을 할 수 있는 모듈
 var url = require('url');
@@ -36,6 +37,7 @@ var portForHttps = 8081;
 
 // cookie-parser Start 
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended:false}));
 
 app.get('/getCookie', function(request, response){
     response.send(request.cookies);
@@ -62,7 +64,18 @@ app.use(express.static(__dirname+'/web_folder'));
 
 // Router start 
 routerHTMl.get('/:id', function(request, response){
-    response.send('HTML ROUTER');
+    var _url = request.url;
+    var pathData = url.parse(_url, true).path;
+    var htmlYN = pathData.match('html'); 
+
+    response.writeHead(200,{"Content-Type":"text/html"}); 
+    if(_url == '/' || _url == '/favicon.ico'){    
+        fs.createReadStream("index.html").pipe(response); 
+    } else if(htmlYN == 'html'){
+        fs.createReadStream('./html'+pathData).pipe(response); 
+    } else{
+        fs.createReadStream(pathData).pipe(response); 
+    }
 });
 
 router.get('/:id', function(request, response){
@@ -72,6 +85,23 @@ router.get('/:id', function(request, response){
 app.use('/html', routerHTMl);
 app.use('/', router);
 // Router end
+
+// post start 
+
+app.post('/', function (request, response){
+    // make cookie
+    var id = request.body.ID;
+    var pwd = request.body.PWD;
+
+    if (id=='taegu' && pwd=='9781') {
+        response.cookie('auth', true);
+        response.send('<strong>SUCCESS</strong>');
+    } else {
+        response.redirect('/html/login.html');
+    }
+});
+
+// 
 
 //All Selector 
 app.all('*', function (request, response){
